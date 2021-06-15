@@ -6,19 +6,21 @@ import android.content.SharedPreferences
 class PreferenciaAnotacao (private val context: Context){
 
     private val ARQUIVO = "anotacao.preferencia"
+    private val CHAVE = "nome"
     private val preferences: SharedPreferences
     private val editor: SharedPreferences.Editor
 
-    fun salvarAnotacao(){
-
+    fun salvarAnotacao(anotacao: String?){
+        editor.putString(CHAVE, anotacao)
+        editor.commit()
     }
 
-    fun RecuperarAnotacao(){
-
+    fun RecuperarAnotacao(): String?{
+        return preferences.getString(CHAVE, "")
     }
 
     init {
         preferences = context.getSharedPreferences(ARQUIVO, 0)
-        editor =
+        editor = preferences.edit()
     }
 }
